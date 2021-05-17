@@ -1,0 +1,27 @@
+<body>
+  <section class="incident" [ngClass]="{
+    'fatal': incident.level === 'FATAL',
+    'error': incident.level === 'ERROR',
+    'medium': incident.level === 'MEDIUM',
+    'minor': incident.level === 'MINOR',
+    'closed': incident.open === false
+  }">
+    <ul>
+      <li><span>Id:</span> {{incident?.id}}</li>
+      <li><span>Titre:</span> {{incident?.titre}}</li>
+      <li><span>Niveau de l'incident:</span> {{incident?.level}}</li>
+
+      <li><span>Type de l'incident:</span> {{incident?.type}}</li>
+      <li><span>Date de création:</span> {{incident?.dateCreation}}</li>
+    </ul>
+    <ul>
+      <li>
+        <span>Progression:</span>
+        <ngb-progressbar [value]="incident.progress" type="danger" [showValue]="true"></ngb-progressbar>
+      </li>
+    </ul>
+
+    <div class="text-center"><button><a [routerLink]="['/incident', incident.id]">Plus d'info <i
+            class="fas fa-search-plus"></i></a></button></div>
+  </section>
+</body>

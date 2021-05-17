@@ -1,0 +1,58 @@
+<form [formGroup]="incidentform" (ngSubmit)="addIncident()">
+  <h2>Ajouter un incident </h2>
+  <ul class="erreur" *ngIf="formSubmitted">
+    <li *ngIf="incidentform.controls['titre']?.errors?.required">Le titre de l'incident est requis!</li>
+    <li *ngIf="incidentform.controls['email']?.errors?.required">L'email est obligatoire!</li>
+    <li *ngIf="incidentform.controls['description']?.errors?.required">La description est obligatoire!</li>
+    <li *ngIf="incidentform.controls['level']?.errors?.required">Le niveau est obligatoire!</li>
+    <li *ngIf="incidentform.controls['type']?.errors?.required">Le type est obligatoire!</li>
+    <li *ngIf="incidentform.controls['progress']?.errors?.required">La progression de l'incident est obligatoire!</li>
+  </ul>
+  <ul>
+    <li>
+      <div>
+        <label for="titre"><span>Titre de l'incident:</span> </label>
+        <input type="text" formControlName="titre" id="titre">
+      </div>
+      <div>
+        <label for="email"><span>Email:</span> </label>
+        <input type="email" formControlName="email" id="email">
+      </div>
+      <div>
+        <span>Description:</span> <br>
+        <textarea rows="2" cols="44" formControlName="description" placeholder="description incident"></textarea>
+      </div>
+      <div>
+        <label for="level"><span>Niveau de l'incident:</span> </label>
+        <select formControlName="level">
+          <option value="">Choisir le niveau</option>
+          <option value="ERROR">Error</option>
+          <option value="FATAL">Fatal</option>
+          <option value="MEDIUM">Medium</option>
+          <option value="MINOR">Minor</option>
+        </select>
+      </div>
+    </li>
+    <li>
+      <div>
+        <label for="type"><span>Type d'incident:</span></label>
+        <select formControlName="type">
+          <option value="">Choisir le type</option>
+          <option value="BUG">Bug</option>
+          <option value="FEATURE">Feature</option>
+        </select>
+      </div>
+      <div>
+        <div>
+          <label for="progress"><span>Progression de l'incident:</span> </label>
+          <input type="number" formControlName="progress" id="progress" min="0" max="100">
+        </div>
+      </div>
+      <div>
+        <span>Incident ouvert:</span> <input type="checkbox" formControlName="open">
+      </div>
+      <br>
+      <div><button type="submit">Ajouter l'incident <i class="fas fa-plus-circle"></i></button></div>
+    </li>
+  </ul>
+</form>

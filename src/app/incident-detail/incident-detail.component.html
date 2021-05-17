@@ -1,0 +1,31 @@
+<h2 class="text-center">Détail de l'incident: {{incident?.id}} - {{incident?.titre}}</h2>
+<div [ngStyle]="{'background-color':'#00003c'}" class="pt-4">
+  <ul>
+    <li>
+      <p><span>Email:</span> {{incident?.email}}</p>
+      <p><span>description:</span> {{incident?.description}}</p>
+      <p><span>Niveau:</span> {{incident?.level}}</p>
+      <p><span>Type:</span> {{incident?.type}}</p>
+
+    </li>
+    <li>
+      <p><span>Progression:</span>
+        <ngb-progressbar [value]="incident.progress" type="danger" [showValue]="true"></ngb-progressbar>
+      </p>
+      <p><span>Date de création:</span> {{incident?.dateCreation}}</p>
+      <p><span>Date de modification:</span> {{incident?.dateModification}}</p>
+      <p><span>Incident ouvert:</span> {{incident?.open}}</p>
+    </li>
+  </ul>
+  <div class="text-center text-white">
+    <div *ngIf="divDisplay">
+      Voulez vous vraiment supprimer cet incident?
+      <button (click)="deleteIncident()">Oui</button>
+      <button (click)="divDisplay = false">Non</button>
+    </div>
+    <button class="supprime" (click)="deleteConfirm()">Supprimer cet incident</button>
+  </div>
+</div>
+<div class='retour text-center'>
+  <button class="retourL"><a class="text-white" [routerLink]="['/incident']">Retour à la liste</a></button>
+</div>
